@@ -1,0 +1,31 @@
+# 10_nouveau · 1896 Art Nouveau (Mucha poster)
+
+File: `scenes/10_nouveau.js` (~300 lines). Performance: warm average 29ms, max 37ms, first frame (cache build) ≈80ms; determinism passes (same lt rendered twice is pixel-identical); motion difference 13.1% of pixels from lt 0.35→0.65. On screen for 0.70s (T09 organic-wave transition 0.24s, growing out of (1330,320) = the girl's halo).
+
+## Pipeline
+1. **Fully cached base `nv_bg`**: three-stop vertical gradient gray-green→beige-green→peach (`#b9cba0`→`#cfd3a6`→`#ecc9a2`, filling only the inner frame 34..1886×32..907); dot pattern = ring r10 + center dot r2.6, row pitch 54, column pitch 62, odd rows offset 31 (diamond stagger), color `rgba(120,140,100,.38)`; a 240×135 fbm tile scaled up at α0.5 overlays lithograph mottling (hundreds of times faster than computing noise full-screen); mosaic floor band, 20×24 per cell, 9 colors cycled and scattered with `(k*7+(k>>2))%9`; green banner `#8fac80`; title `Marcellus-400` 76px, letterSpacing 12, 7px dark-brown stroke first then cream fill; gold frame = 6px outer gold `#c9a24a` + two 2px dark-brown lines inside and out.
+2. **Variable-width path `ribbon(pts, w(q))`**: the point list is first densified with Catmull-Rom (4–10 points per segment), each point offset w/2 to both sides along the normal, assembled into a closed polygon and filled. Every "whip line" is this: stems, leaves, wrought-iron table legs, banner scrollwork, hair, steam. `swellW(wmax)` = pointed at both ends, thick in the middle (sin envelope) — this is the width breathing of Mucha's linework. Spiral finish `spiral(cx,cy,r0,a0,turns,dir)`: radius shrinks linearly to 15%.
+3. **Mucha's "thick outer contour, thin inner lines" — the global silhouette offset method**: the characters (cat + girl + hair + drapery) are all drawn into an offscreen layer L (RIG both mode, lw 2 → inner lines occlude correctly in part order); then L is duplicated, stained dark brown `#4e3320` with `source-in`, and placed under L on the main canvas at three offsets (-1.5,-1.5), (3.5,4.5), (2,2.5). Result: a 1.5px rim around the silhouette edge, a 4–5px thick edge on the lower right; inner lines stay 2px. Only 3 extra full-screen drawImage calls.
+4. Grain `P.grain('nv', .05, warm brown, .14)` over the top layer, like lithographic printing.
+
+## Motif animation (everything must be visible within 0.7s)
+- **Sunrise**: measured from the original (frame 509 (583,400) → frame 530 (576,299), ≈−5px/frame) and written as `sy = 400 - (lt-0.267)·288`, `sx = 583 - (lt-0.267)·20`; at lt=0 it sits at 477 (hidden behind the mountain), at lt=0.7 it reaches 275. The hill color band is drawn after the sun = natural occlusion, "rising from behind the mountain".
+- **Leaded rays turning**: 14 radial leaded bars from r92→r420 around the sun center, angle `+lt·0.9·0.25` turning slowly with ±0.04 wobble; the leaded bars follow the sun, so every glass division in the whole window changes — the most visible motion in the window.
+- **Stained-glass border band**: along the arched inner edge (straight sides + elliptical arc rx219 ry130) place a 14×14 color chip every 17px, rotated to the tangent, 6 colors cycling.
+- **Poppy/lily sway**: flower head horizontal displacement `sin(7.5t+φ)·13 + sin(3.1t+2φ)·5`; the stem is a three-control-point ribbon curve nudged only in its upper section; the left and right clumps are in opposite phase; leaves at 0.3× amplitude.
+- **Halo rotation**: girl's halo R172, 18 round studs turning at `+0.9t`, inner ring of 32 rose-window petals reversing at `-0.63t`; cat's halo R106 eight-petal orange flower at `-1.1t` + gold dashed ring with lineDashOffset running.
+- **Hair**: first a large hair mass (16 points, smooth, outer edge waving with `sin(6t+y·0.035)·9`), then 7 locks of back curls + 2 locks of front-shoulder curls: each lock is a 12-point S curve `sin(7.4q+φ-7t)·(6+20q)` (traveling wave moving downward), ending in a 1.2-turn spiral, width tapering 14–18 → 2.5, cream highlight core + fine dark-gold line. Six small curls on the top outer edge add volume. All points follow `G.A.headC`'s offset (they move along when drinking with the head tilted back, following less the further down they are).
+- **S-shaped decorative steam**: 3 cream ribbons (width 26/20/14) + 1.8px brown stroke + center line, `sin(4q+φ-6t)·(18+70q)` traveling wave, horizontal spacing spreading with height ×(1+2.6q), 34px spiral at the end; overall `lean = -90 - 160·cup` leaning left — **pitfall**: the choreo raises the cup to the mouth, so if the steam rises vertically it crosses the girl's face; it must lean toward the window with cup.
+- choreo: lifting the cup, tilting the head back, blinking, tail swish and breathing all use RIG; the saucer stays on the table (the tabletop is not empty after the cup is taken).
+
+## Palette
+Line `#4e3320`; gold `#c9a24a`/`#9c7a2e`; cream `#f6eedb`; skin `#f6dcc4`; golden hair `#e8bf55`/highlight `#f6dc8a`/dark `#b9862a`; dress `#f4ecda`; pink drapery `#e6aaa5`/fold `#d48e8c`; poppy `#d9706a`/`#b4504b`, center `#3f6a4a`+gold dots; lily `#f7f2e6`; wrought iron `#3d7763`; cat `#e39a4c`/`#fbf3e3`/stripe `#c0672c`, eyes `#e6c040`; halo pink `#ebb8b2`, teal ring `#5f9a8a`, cat halo red `#b8473a`.
+
+## Pitfalls
+- **`drawGirl(mode:'line')` on the top layer draws the outlines of occluded parts (the far sleeve) through the torso** (the 09 benchmark has this too). Instead draw the lines inside the offscreen layer in both mode, in part order, then apply the thick outer contour to the whole thing.
+- The hair was initially 7 long 34px-wide bands that looked like sausages/noodles; Mucha hair = a hair mass as the base + fine S-curled locks + spiral endings, width ≤18.
+- Do not take self-check difference frames at lt<0.33: the engine applies a 1.03× "beat impact" scale within 20 frames after a transition starts, which turns the whole difference image red.
+
+## Still improvable
+- The cat is still RIG's sitting pose (white straight legs); the setting sheet has a lying-down fluffy orange cat; the Mucha feel rests mostly on the halo and the thick/thin lines.
+- The title uses Marcellus; the setting sheet has a rounder hand-drawn Art Nouveau letterform; a hand-written set of letter paths could be made.

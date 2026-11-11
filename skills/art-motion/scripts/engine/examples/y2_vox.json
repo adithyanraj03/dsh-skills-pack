@@ -1,0 +1,14 @@
+{
+  "grammar": "y2_vox",
+  "duration": 9,
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "theme": "wood",
+  "cues": [
+    { "at": 0.0, "kind": "image", "image": "assets/candlestick-chart_landscape.png", "text": "daily candlestick · illustrative data" },
+    { "at": 1.8, "kind": "highlight", "data": { "rect": [0.74, 0.22, 0.22, 0.11] } },
+    { "at": 4.2, "kind": "image", "image": "assets/revenue-chart_portrait.png", "text": "the same chart, portrait" },
+    { "at": 6.6, "kind": "title", "text": "both charts are code-drawn" }
+  ]
+}

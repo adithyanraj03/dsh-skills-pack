@@ -1,0 +1,52 @@
+{
+ "grammar": "y4_storytime",
+ "duration": 8.5,
+ "fps": 30,
+ "width": 1920,
+ "height": 1080,
+ "theme": "snow",
+ "data": {
+  "character": {
+   "frames": {
+    "rest": "../demos/_shared/hero/c1_1.png",
+    "talk": "../demos/_shared/hero/c1_1.png",
+    "point": "../demos/_shared/hero/c1_0.png",
+    "shrug": "../demos/_shared/hero/c1_2.png"
+   }
+  }
+ },
+ "cues": [
+  {
+   "at": 0.1,
+   "kind": "insert",
+   "text": "3000 lines",
+   "sub": "Build me a website",
+   "data": {
+    "hit": 1.6,
+    "count": 3000,
+    "unit": "lines"
+   }
+  },
+  {
+   "at": 2.8,
+   "kind": "react"
+  },
+  {
+   "at": 4.1,
+   "kind": "point",
+   "text": "First time I let AI write code,",
+   "sub": "Where do these… go?",
+   "data": {
+    "pose": "point"
+   }
+  },
+  {
+   "at": 6.6,
+   "kind": "highlight",
+   "data": {
+    "mark": "?"
+   }
+  }
+ ],
+ "_note": "For tests only: the frames are the author's own AI cartoon avatar (not covered by the MIT license; never use them in someone else's film). Paths are relative to scripts/engine/examples/."
+}

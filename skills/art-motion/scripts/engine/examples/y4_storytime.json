@@ -1,0 +1,52 @@
+{
+ "grammar": "y4_storytime",
+ "duration": 8.5,
+ "fps": 30,
+ "width": 1920,
+ "height": 1080,
+ "theme": "snow",
+ "data": {
+  "character": {
+   "frames": {
+    "rest": "../../../character-frames/<your-character>/rest.png",
+    "talk": "../../../character-frames/<your-character>/talk.png",
+    "point": "../../../character-frames/<your-character>/point.png",
+    "shrug": "../../../character-frames/<your-character>/shrug.png"
+   }
+  }
+ },
+ "cues": [
+  {
+   "at": 0.1,
+   "kind": "insert",
+   "text": "3000 lines",
+   "sub": "Build me a website",
+   "data": {
+    "hit": 1.6,
+    "count": 3000,
+    "unit": "lines"
+   }
+  },
+  {
+   "at": 2.8,
+   "kind": "react"
+  },
+  {
+   "at": 4.1,
+   "kind": "point",
+   "text": "First time I let AI write code,",
+   "sub": "Where do these… go?",
+   "data": {
+    "pose": "point"
+   }
+  },
+  {
+   "at": 6.6,
+   "kind": "highlight",
+   "data": {
+    "mark": "?"
+   }
+  }
+ ],
+ "_note": "y4 must use your own character frame library (AI-generated frames, see references/10-characters.md and character-fidelity.md). Replace <your-character> with your frame library; without image-generation capability, don't use y4."
+}

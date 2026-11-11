@@ -1,0 +1,14 @@
+# dsh-skills-pack bundle patch: mount the host half, which registers the
+# bundled skills/ directory as one provider on the dsh skill registry
+# (ctx.skills). There is no browser half.
+#
+# `name` MUST be the published package name, because the loader imports this
+# exact specifier. `id` is this row's stable handle: once released, do not
+# rename it, or saved profile state keyed to it is orphaned.
+#
+# No config: the provider serves every bundled skill. A user's own local
+# skills (project and user roots) always shadow a bundled skill of the same
+# name, and disabling or uninstalling the plugin removes all bundled skills.
+- insert:
+    - id: skills-pack
+      name: 'dsh-skills-pack'

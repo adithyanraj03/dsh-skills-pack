@@ -1,0 +1,38 @@
+MIT License
+
+Copyright (c) 2026 Adithya N Raj
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+Bundled third-party skills retain their own licenses:
+
+- skills/art-motion — MIT, Copyright (c) 2026 alchaincyf (Huashu). English
+  fork of https://github.com/alchaincyf/huashu-art-motion. The Huashu cartoon
+  likeness and character frames (skills/art-motion/scripts/engine/demos/_shared/hero/,
+  skills/art-motion/scripts/engine/demos/long_scroll/frames/, and
+  skills/art-motion/assets/characters/) are provided only for that skill's
+  demonstrations and are not licensed for other uses under MIT. Derived
+  stroke-order data in scripts/engine/reference_films/spacex/spacex_wb/assets/strokes.js
+  retains the Arphic Public License; fonts in scripts/engine/lib/fonts/ retain
+  their respective OFL licenses. See skills/art-motion/README.md.
+- skills/ds-* (ds-blast-radius, ds-design, ds-design-audit, ds-lessons,
+  ds-principles, ds-review-loop, ds-tdd, ds-unslop, ds-unstick) — MIT,
+  Copyright (c) 2026 AICodeKing. Each skill directory carries its own LICENSE.

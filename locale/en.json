@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Skills pack",
+    "description": "Registers 36 bundled agent skills as one skill provider; local skills of the same name take priority."
+  }
+}

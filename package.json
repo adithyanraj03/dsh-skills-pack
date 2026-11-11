@@ -1,0 +1,55 @@
+{
+  "name": "dsh-skills-pack",
+  "version": "0.1.0",
+  "description": "Registers 36 bundled agent skills (research writing, LaTeX, experiments, design review, office documents, art-motion animation, Windows shell and dsh plugin conventions) as one skill provider; local skills of the same name take priority.",
+  "icon": "assets/icon.png",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json",
+    "./locale/*.json": "./locale/*.json"
+  },
+  "files": [
+    "src",
+    "cordis.patch.yml",
+    "locale",
+    "skills",
+    "assets/icon.png",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node scripts/test-provider.mjs"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "dependencies": {
+    "yaml": "^2.4.2"
+  },
+  "keywords": [
+    "dsh-plugin",
+    "dsh",
+    "skills",
+    "agent-skills",
+    "research",
+    "latex",
+    "prompt-engineering"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adithyanraj03/dsh-skills-pack.git"
+  },
+  "homepage": "https://adithyanraj03.github.io/dsh-skills-pack/",
+  "bugs": {
+    "url": "https://github.com/adithyanraj03/dsh-skills-pack/issues"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "license": "MIT"
+}
