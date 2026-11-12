@@ -1,7 +1,7 @@
 {
   "name": "dsh-skills-pack",
-  "version": "0.1.0",
-  "description": "Registers 36 bundled agent skills (research writing, LaTeX, experiments, design review, office documents, art-motion animation, Windows shell and dsh plugin conventions) as one skill provider; local skills of the same name take priority.",
+  "version": "0.1.1",
+  "description": "Registers 36 bundled agent skills (research writing, LaTeX, experiments, design review, office documents, animation, Windows shell and dsh plugin conventions) as one host-only skill provider with no UI, no network calls and no telemetry of its own; skill scripts run with the user's permissions only when invoked, local skills of the same name take priority, and uninstall removes all 36.",
   "icon": "assets/icon.png",
   "type": "module",
   "main": "src/index.js",
